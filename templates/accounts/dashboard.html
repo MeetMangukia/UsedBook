@@ -1,0 +1,84 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+{% if book_seller %}
+<!-- Alerts -->
+{% include 'partials/_alerts.html' %}
+<div class="product-profile-box">
+        <div class="container">
+           <div class="row">
+                 <div class="col-md-2 col-sm-4" style="padding-top: 10px;">
+                       <div class="left-profile-box-m prod-page">
+                          <div class="pro-img">
+                             <img src="{{ book_seller.user_photo.url }}" alt="#" />
+                          </div>
+                          <div class="pof-text">
+                             <h3>{{ book_seller.user_name }}</h3>
+                             <div class="check-box"></div>
+                          </div>
+                          <a href="{% url 'edit_profile' book_seller.id %}">Edit Profile</a>
+                       <p><img src="{% static 'images/report-icon.jpg' %}" alt="" />Report this user</p>
+                       </div>
+                    </div>
+     
+              <div class="col-md-10 col-sm-8">
+                 <div class="profile-pro-right">
+                    <div class="panel with-nav-tabs panel-default">
+                       <div class="panel-heading clearfix">
+                          <ul class="nav nav-tabs pull-left">
+                             <li class="active"><a href="#tab1default" data-toggle="tab">Your Book List</a></li>
+                          </ul>
+                          <div class="nav nav-tabs pull-right right-t">
+                             <li>
+                                <a href="{% url 'add_product' book_seller.id %}" class="btn" style="margin-top:6px ;">
+                                   Add Book
+                                 </a>
+                              </li>
+                          </div>
+                       </div>
+                       <div class="panel-body">
+                          <div class="tab-content">
+                             <div class="tab-pane fade in active" id="tab1default">
+                                <div class="product-box-main row">
+                                 {% if book_list %}
+                                    {% for book in book_list %}
+                                       <div class="col-md-4 col-sm-6">
+                                       <div class="small-box-c">
+                                          <div class="small-img-b">
+                                                <!-- <a href="{% url 'product_page' book.id %}"> -->
+                                                   <img src="{{ book.book_image_1.url }}" alt="#" />
+                                                <!-- </a> -->
+                                          </div>
+                                          <div class="dit-t clearfix">
+                                             <div class="left-ti">
+                                                <h4>{{ book.book_title }}</h4>
+                                                <p style="color: black;">By {{ book.book_author }}</p>
+                                             </div>
+                                             <a href="#" tabindex="0">${{ book.book_price }}</a>
+                                          </div>
+                                          <div class="prod-btn">
+                                             <a style="color: black;" href="#"> Edit Details </a>
+                                             <a style="color: black;" href="#"> Delete Book </a>
+                                          </div>
+                                       </div>
+                                       </div>
+                                    {% endfor %}
+                                 {% else %}
+                                    <div class="col-md-4 col-sm-6">
+                                       <h5>You does not have any book yet</h5>
+                                    </div>
+                                 {% endif %}  
+                                </div>   
+                             </div>
+                          </div>
+                       </div>
+                    </div>
+                 </div>
+              </div>
+           </div>
+        </div>
+     </div>
+     {% endif %}
+     {% endblock %}

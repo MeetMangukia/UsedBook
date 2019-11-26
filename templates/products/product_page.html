@@ -1,0 +1,152 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+     <div class="product-page-main">
+        <div class="container">
+           <div class="row">
+              <div class="col-md-12">
+                 <div class="prod-page-title">
+                    <h1>{{ book.book_title }}</h1>
+                    <p style="color: black;">By {{ book.book_author }}</p>
+                 </div>
+              </div>
+           </div>
+           <div class="row">
+
+              <div class="col-md-3 col-sm-12">
+                  <div class="price-box-right">
+                     <h4>Price</h4>
+                     <h3>${{ book.book_price }} </h3>
+                     <!-- <h5>Seller</h5>
+                     <div class="pro-img">
+                           <img src="{{ book.book_owner.user_photo.url }}" alt="#" />
+                        </div> -->
+                     <!-- <a href="#">Send Mail</a> -->
+                  </div>
+               </div>
+              
+              <div class="col-md-7 col-sm-8">
+                 <div class="md-prod-page">
+                    <div class="md-prod-page-in">
+                       <div class="page-preview">
+                          <div class="preview">
+                             <div class="preview-pic tab-content">
+                                <div class="tab-pane active" id="pic-1"><img src="{{ book.book_image_1.url }}" alt="#" /></div>
+                                <!-- <div class="tab-pane" id="pic-2"><img src="{{ book.book_image_2.url }}" alt="#" /></div>
+                                <div class="tab-pane" id="pic-3"><img src="{{ book.book_image_3.url }}" alt="#" /></div>
+                                <div class="tab-pane" id="pic-4"><img src="{{ book.book_image_4.url }}" alt="#" /></div> -->
+                             </div>
+                             <ul class="preview-thumbnail nav nav-tabs">
+                                <!-- <li class="active"><a data-target="#pic-1" data-toggle="tab"><img src="{{ book.book_image_1.url }}" alt="#" /></a></li> -->
+                                <!-- <li><a data-target="#pic-2" data-toggle="tab"><img src="{{ book.book_image_2.url }}" alt="#" /></a></li>
+                                <li><a data-target="#pic-3" data-toggle="tab"><img src="{{ book.book_image_3.url }}" alt="#" /></a></li>
+                                <li><a data-target="#pic-4" data-toggle="tab"><img src="{{ book.book_image_4.url }}" alt="#" /></a></li> -->
+                             </ul>
+                          </div>
+                       </div>
+                       
+                    </div>
+                    <div class="description-box">
+                       <div class="dex-a">
+                          <h4>Description</h4>
+                          <p>{{ book.book_description }}</p>
+                       </div>
+                       <div class="spe-a">
+                          <h4>Specifications</h4>
+                          <ul>
+                             <li class="clearfix">
+                                <div class="col-md-4">
+                                   <h5>Title</h5>
+                                </div>
+                                <div class="col-md-8">
+                                   <p>{{ book.book_title }}</p>
+                                </div>
+                             </li>
+                             <li class="clearfix">
+                                <div class="col-md-4">
+                                   <h5>Author</h5>
+                                </div>
+                                <div class="col-md-8">
+                                   <p>{{ book.book_author }}</p>
+                                </div>
+                             </li>
+                             <li class="clearfix">
+                                <div class="col-md-4">
+                                   <h5>Book Edition</h5>
+                                </div>
+                                <div class="col-md-8">
+                                   <p>{{ book.book_edition }}</p>
+                                </div>
+                             </li>
+                             <li class="clearfix">
+                                <div class="col-md-4">
+                                   <h5>Old</h5>
+                                </div>
+                                <div class="col-md-8">
+                                   <p>{{ book.book_old }} years old</p>
+                                </div>
+                             </li>
+                             <li class="clearfix">
+                                <div class="col-md-4">
+                                   <h5>No. of Pages</h5>
+                                </div>
+                                <div class="col-md-8">
+                                   <p>{{ book.book_page }}</p>
+                                </div>
+                             </li>
+                             
+                          </ul>
+                       </div>
+                    </div>
+                 </div>
+                 <div class="similar-box">
+                    <h2>Other Books from {{ book.book_owner }}</h2><br>
+                    <div class="product-box-main row">
+                     {% for other_book in other_books %}
+                        <div class="col-md-6">
+                           <div class="small-box-c">
+                              <div class="small-img-b">
+                                 <a href="{% url 'product_page' other_book.id %}">
+                                    <img class="img-responsive" src="{{ other_book.book_image_1.url }}" alt="#" />
+                                 </a>
+                              </div>
+                              <div class="dit-t clearfix">
+                                 <div class="left-ti">
+                                    <h4>{{ other_book.book_title }}</h4>
+                                    <p style="color:black" >By {{ other_book.book_author }}</p>
+                                 </div>
+                                 <a href="#" tabindex="0">${{ other_book.book_price }}</a>
+                              </div>
+                              <div class="prod-btn">
+                                 <a href="{% url 'product_page' other_book.id %}"> Contact Saller</a>
+                                 
+                              </div>
+                           </div>
+                        </div>
+                     {% endfor %}
+                   </div>
+                 </div>
+              </div>
+              <!-- Seller Details -->
+              <div class="col-md-2 col-sm-4">
+                  <div class="left-profile-box-m prod-page">
+                     <h4>Seller Details</h4><br>
+                     
+                    <div class="pof-text">
+                        <h2>Name</h2>
+                        <h4>{{ book.book_owner }}</h4><br>
+                        <h2>Email</h2>
+                        <h4>{{ book.book_owner.user_email }}</h4><br>
+                        <h2>Phone No.</h2>
+                        <h4>{{ book.book_owner.user_phone }}</h4><br>
+                        
+                   </div>
+                  </div>
+               </div>
+
+           </div>
+        </div>
+     </div>
+     {% endblock %}

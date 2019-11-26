@@ -1,0 +1,148 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+      <div class="page-content-product">
+         <div class="main-product">
+            <div class="container">
+               <div class="row clearfix">
+                  <div class="find-box">
+                     <h1>Find your next Book</h1>
+                     <h4>It has never been easier.</h4>
+                     <div class="product-sh">
+                        <form action="{% url 'product_list' %}" method="POST">
+                           {% csrf_token %}
+                           <input type="hidden" name="form_type" value="search" />
+                           <div class="col-sm-5">
+                              <div class="form-sh">
+                                 <input name="search_detail" type="text" placeholder="Book name or Author name" >
+                              </div>
+                           </div>
+                           <div class="col-sm-4">
+                              <div class="form-sh">
+                                 <input name="search_location" id="search_location" type="text" placeholder="Location" >
+                              </div>
+                           </div>
+                           
+                           <div class="col-sm-3">
+                              <div class="form-sh"> 
+                                 <button type="submit" class="btn btn-primary" style="width: 200px; height: 50px; font-size: 22px;">Search Book</button> 
+                              </div>
+                           </div>
+                        </form>
+                        <p>Or simply<a href="{% url 'signup' %}"> click here </a> to sell your old Book</p>
+                     </div>
+                  </div>
+               </div>
+               
+            </div>
+         </div>
+      </div>
+      <div class="cat-main-box">
+         <div class="container">
+            <div class="row panel-row">
+               <div class="col-md-4 col-sm-6 wow fadeIn" data-wow-delay="0.0s">
+                  <div class="panel panel-default">
+                     <div class="panel-body">
+                        <img src="{% static 'images/xpann-icon.jpg' %}" class="icon-small" alt="">
+                        <h4>Find Used Book</h4>
+                        <p>On UsedBook you can find out a range of used book in 
+                           affordable price and near your location.
+                        </p>
+                     </div>
+                  </div>
+               </div>
+               <div class="col-md-4 col-sm-6 wow fadeIn" data-wow-delay="0.2s">
+                  <div class="panel panel-default">
+                     <div class="panel-body">
+                        <img src="{% static 'images/get-icon.jpg' %}" class="icon-small" alt="">
+                        <h4>Get Seller Details</h4>
+                        <p>Now it is easy to contact seller with UsedBook.
+                           You can contact through Phone No. or Email 
+                        </p>
+                     </div>
+                  </div>
+               </div>
+               <div class="col-md-4 col-sm-6 wow fadeIn hidden-sm" data-wow-delay="0.4s">
+                  <div class="panel panel-default">
+                     <div class="panel-body">
+                        <img src="{% static 'images/create-icon.jpg' %}" class="icon-small" alt="">
+                        <h4>Negotiate and Buy</h4>
+                        <p>Now you are in contact with seller so it is easy to
+                           negotiate and buy.
+                        </p>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+      <div class="products_exciting_box">
+         <div class="container">
+            <div class="row">
+               <div class="col-md-6 col-sm-6 wow fadeIn" data-wow-delay="0.2s">
+                  <div class="exciting_box f_pd">
+                     <img src="{% static 'images/exciting_img-01.jpg' %}" class="icon-small" alt="" />
+                     <h4>More Then Just Buy
+                     </h4>
+                     <p>At the time of buying product, Now you can select time and place
+                        where you want. Even some people just exchange their books using our 
+                        platform UsedBook. It's never been easy like this before.
+                     </p>
+                  </div>
+               </div>
+               <div class="col-md-6 col-sm-6 wow fadeIn" data-wow-delay="0.4s">
+                  <div class="exciting_box l_pd">
+                     <img src="{% static 'images/exciting_img-02.jpg' %}" class="icon-small" alt="" />
+                     <h4>Check Before Buy.</h4>
+                     <p>Now you can check quality of books and according that you can take your
+                        decision. 
+                     </p>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+
+      <!-- JavaScript for Live Location Search -->
+      <script>
+            $( function() {
+               var availableTags = [
+                  'Surat, Gujarat',
+                  'Ahamdabad, Gujarat',
+                  'Vadodara, Gujarat',
+                  'Gandhinagar, Gujarat',
+                  'jamnagar, Gujarat',
+            
+                  'Pune, Maharashtra',
+                  'Nagpur, Maharashtra',
+                  'Nashik, Maharashtra',
+                  'Solapur, Maharashtra',
+                  'Jalgaon, Maharashtra',
+            
+                  'Bengaluru, Karnataka',
+                  'Mysuru, Karnataka',
+                  'Belagavi, Karnataka',
+                  'Vijayapura, Karnataka',
+                  'Raichur, Karnataka',
+            
+                  'Ludhiana, Punjab',
+                  'Amritsar, Punjab',
+                  'Jalandhar, Punjab',
+                  'Patiala, Punjab',
+                  'Bathinda, Punjab',
+            
+                  'Jaipur, Rajasthan',
+                  'Jodhpur, Rajasthan',
+                  'Udaipur, Rajasthan',
+                  'Jaisalmer, Rajasthan',
+                  'Pushkar, Rajasthan',
+               ];
+               $( "#search_location" ).autocomplete({
+                 source: availableTags
+               });
+             } );
+       </script>
+      
+{% endblock %}

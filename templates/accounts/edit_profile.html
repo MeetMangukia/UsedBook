@@ -1,0 +1,73 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="section-how-it-works">
+        <div class="container">
+           <div class="row">
+              <div class="col-md-5 col-sm-6 col-xs-12">
+                 <div class="left-works-box wow fadeIn">
+                     <!-- Alerts -->
+                     {% include 'partials/_alerts.html' %}
+                   <div class="blue-form">
+                       <h2>Update Your Details</h2>
+                        <form action="{% url 'edit_profile' book_seller.id %}" method="POST" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <input type="hidden" name="form_type" value="edit_profile" />
+                           <div class="form-inline">
+                               <input name="name" type="text" placeholder="Enter your Name" 
+                               {% if book_seller.user_name %}
+                                    value="{{book_seller.user_name}}"
+                               {% endif %}
+                               />
+                           </div><br>
+                           <div class="form-inline">
+                               <input name="email" type="text" placeholder="Enter your E-mail" 
+                               {% if book_seller.user_email %}
+                                    value="{{book_seller.user_email}}"
+                               {% endif %}
+                               />
+                           </div><br>
+                           <div class="form-inline">
+                               <input name="phone" type="text" placeholder="Enter your Phone No." 
+                               {% if book_seller.user_phone %}
+                                    value="{{book_seller.user_phone}}"
+                               {% endif %}
+                               />
+                           </div><br>
+                           <div class="form-inline">
+                               <textarea name="address" type="text" placeholder="Your Address">{% if book_seller.user_address %}{{book_seller.user_address}}{% endif %}</textarea>
+                           </div><br>
+                           <div class="form-inline">
+                               <input name="city" type="text" placeholder="Your city" 
+                               {% if book_seller.user_city %}
+                                    value="{{book_seller.user_city}}"
+                               {% endif %}/>
+                           </div><br>
+                           <div class="form-inline">
+                               <input name="state" type="text" placeholder="Your state" 
+                               {% if book_seller.user_state %}
+                                    value="{{book_seller.user_state}}"
+                               {% endif %}
+                               />
+                           </div><br><br>
+
+                           {% if book_seller.user_photo.url %}
+                           <img src="{{ book_seller.user_photo.url }}" alt="#" style="margin-bottom:10px ;"/>
+                           {% endif %}
+                           <div class="form-inline">
+                                <h4>Upload Your Photo</h4>
+                                <input name="photo" type="file" value="{{ book_seller.user_photo.url }}"/>
+                            </div><br>
+                           <button type="submit" class="btn btn-primary">Save</button>
+                           <a href="{% url 'edit_password' %}" class="btn btn-primary">Change Password</a>
+                       </form>
+                   </div>
+                 </div>
+              </div>
+              
+           </div>
+        </div>
+     </div>
+
+     {% endblock %}

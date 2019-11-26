@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="section-how-it-works">
+        <div class="container">
+           <div class="row">
+              <div class="col-md-5 col-sm-6 col-xs-12">
+                 <div class="left-works-box wow fadeIn">
+                   <div class="blue-form">
+                       <h2>Add Book</h2>
+                       <form action="{% url 'add_product' book_seller.id %}" method="POST">
+                           {% csrf_token %}
+                           <input type="hidden" name="form_type" value="product_form" />
+                           
+                           <div class="form-inline">
+                               <h5>Select Book Type</h5><br>
+                               <select name="category">
+                                   <option value="Fiction">Fiction</option>
+                                   <option value="Art">Art</option>
+                                   <option value="Dictionary">Dictionary</option>
+                                   <option value="Autobiography">Autobiography</option>
+                                   <option value="Encyclopedia">Encyclopedia</option>
+                                   <option value="Health">Health</option>
+                                   <option value="History">History</option>
+                                   <option value="Math">Math</option>
+                                   <option value="Science">Science</option>
+                                   <option value="Other">Other</option>
+                               </select>
+                            </div><br>
+                            <div class="form-inline">
+                                    <input type="text" name="title" placeholder="Book title" />
+                                </div><br>
+                           <div class="form-inline">
+                                <input type="text" name="author" placeholder="Author name" />
+                            </div><br>
+                           <div class="form-inline">
+                               <input type="text" name="price" placeholder="Book price" />
+                           </div><br>
+                           <div class="form-inline">
+                               <input type="text" name="edition" placeholder="Book edition" />
+                           </div><br>
+                           <div class="form-inline">
+                               <input type="text" name="old" placeholder="Years Old" />
+                           </div><br>
+                           <div class="form-inline">
+                               <input type="text" name="pages" placeholder="No. of pages" />
+                           </div><br>
+                           <div class="form-inline">
+                               <textarea type="text" name="discription" placeholder="Book Discription" ></textarea>
+                           </div><br>
+
+                           <div class="form-inline">
+                                <h4>Upload Up to 4 Photos of Book</h4>
+                                1.<input type="file" name="photo_1" placeholder="No. of pages" />
+                                2.<input type="file" name="photo_2" placeholder="No. of pages" />
+                                3.<input type="file" name="photo_3" placeholder="No. of pages" />
+                                4.<input type="file" name="photo_4" placeholder="No. of pages" />
+                            </div><br>
+                           <button type="submit" class="btn btn-primary">Add Book</button>
+                       </form>
+                   </div>
+                 </div>
+              </div>
+              
+           </div>
+        </div>
+     </div>
+
+     {% endblock %}

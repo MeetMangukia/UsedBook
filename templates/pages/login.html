@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block login-signup %}
+<div class="section account-box">
+        <div class="blue-dark"></div>
+        <div class="light-blue-grad"></div>
+        <div class="container">
+           <div class="row">
+              <div class="col-lg-8 col-lg-offset-2">
+                 <div class="blue-form">
+                    <h2>Login</h2>
+                    <!-- Alerts -->
+                     {% include 'partials/_alerts.html' %}
+                    <form action="{% url 'dashboard' %}" method="POST">
+                       {% csrf_token %}
+                       <input type="hidden" name="form_type" value="login" />
+                       <div class="form-inline">
+                          <input type="email" name="email" placeholder="Enter your E-mail" />
+                       </div><br>
+                       <div class="form-inline">
+                          <input type="text" name="password" placeholder="Enter your Password" />
+                       </div><br>
+                       <button type="submit" class="btn btn-primary">Continue</button>
+                    </form>
+                 </div>
+              </div>
+           </div>
+        </div>
+     </div>
+
+     {% endblock %}

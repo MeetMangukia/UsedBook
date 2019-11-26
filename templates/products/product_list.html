@@ -1,0 +1,148 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+     <div class="furniture-box">
+        <div class="container">
+           <div class="row">
+              <div class="furniture-main">
+                 <h2>Books</h2>
+                 <!-- <div class="col-md-3 col-sm-4">
+                    <div class="furniture-left">
+                       <h3>Filter Products</h3>
+
+                        <div class="by-box">
+                           <h5>By Book Location</h5>
+                           <p>
+                             <input name="search_location" id="search_location" type="text">
+                          </p>
+                       </div><br><br>
+                       <div class="by-com">
+                          <h5>By Book Type</h5>
+                          <div class="list-b">
+                             <div id="boxscroll">
+                                 <div class="form-check">
+                                    <input id="checkbox1" name="fiction" class="filled-in chk-col-blue" type="checkbox">
+                                    <label for="checkbox1">
+                                    Fiction
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                   <input id="checkbox2" name="art" class="filled-in chk-col-blue" type="checkbox">
+                                   <label for="checkbox2">
+                                   Art
+                                   </label>
+                                </div>
+                                <div class="form-check">
+                                   <input id="checkbox3" name="dictionary" class="filled-in chk-col-blue" type="checkbox">
+                                   <label for="checkbox3">
+                                   Dictionary
+                                   </label>
+                                </div>
+                                <div class="form-check">
+                                   <input id="checkbox4" name="autobiography" class="filled-in chk-col-blue" type="checkbox">
+                                   <label for="checkbox4">
+                                   Autobiography
+                                   </label>
+                                </div>
+                                <div class="form-check">
+                                   <input id="checkbox5" name="encyclopedia" class="filled-in chk-col-blue" type="checkbox">
+                                   <label for="checkbox5">
+                                   Encyclopedia
+                                   </label>
+                                </div>
+                                <div class="form-check">
+                                   <input id="checkbox6" name="health" class="filled-in chk-col-blue" type="checkbox">
+                                   <label for="checkbox6">
+                                   Health
+                                   </label>
+                                </div>
+                                <div class="form-check">
+                                   <input id="checkbox7" name="history" class="filled-in chk-col-blue" type="checkbox">
+                                   <label for="checkbox7">
+                                   History
+                                   </label>
+                                </div>
+                                <div class="form-check">
+                                   <input id="checkbox8" name="math" class="filled-in chk-col-blue" type="checkbox">
+                                   <label for="checkbox8">
+                                   Math
+                                   </label>
+                                </div>
+                                <div class="form-check">
+                                   <input id="checkbox9" name="science" class="filled-in chk-col-blue" type="checkbox">
+                                   <label for="checkbox9">
+                                   Science
+                                   </label>
+                                </div>
+                                <div class="form-check">
+                                   <input id="checkbox10" name="other" class="filled-in chk-col-blue" type="checkbox">
+                                   <label for="checkbox10">
+                                   Other
+                                   </label>
+                                </div>
+                               
+                             </div>
+                          </div>
+                       </div>
+                       <div class="left-list-f">
+                          <div class="panel-group" id="accordion">
+                             <div class="panel panel-default">
+                                <div class="panel-heading">
+                                   <h4 data-toggle="collapse" data-parent="#accordion" href="#collapse1" class="panel-title expand">
+                                      <div class="right-arrow pull-right"><span class="caret"></span></div>
+                                      <a href="#">Sort by Price</a>
+                                   </h4>
+                                </div>
+                                <div id="collapse1" class="panel-collapse collapse">
+                                   <a href="#"><div class="panel-body">High to Low</div></a>
+                                   <a href="#"><div class="panel-body">Low to Hign</div></a>
+                                </div>
+                             </div>
+                           </div>
+                        </div>
+                     </div>
+                  </div> -->
+                 
+                 <div class="col-md-12 col-sm-8">
+                    <div class="furniture-middle">
+                        <div class="product-box-main row">
+                        {% if books %}
+                           {% for book in books %}
+                              <div class="col-md-4 col-sm-6">
+                                 <div class="small-box-c">
+                                    <div class="small-img-b">
+                                       <a href="{% url 'product_page' book.id %}">
+                                          <img src="{{ book.book_image_1.url }}" alt="#" />
+                                       </a>
+                                    </div>
+                                    <div class="dit-t clearfix">
+                                       <div class="left-ti">
+                                          <h4>{{ book.book_title }}</h4>
+                                          <p>By {{ book.book_author }}</p>
+                                       </div>
+                                       <a href="{% url 'product_page' book.id %}" tabindex="0">${{ book.book_price }}</a>
+                                    </div>
+                                    <div class="prod-btn">
+                                       <a href="{% url 'product_page' book.id %}"> Contact Saller</a>
+                                    </div>
+                                 </div>
+                              </div>
+                           {% endfor %}
+                        {% else %}
+                              <h3>Sorry we can't found any book</h3>
+                        {% endif %}
+               
+                       </div>
+                    </div>
+                 </div>
+
+              </div>
+           </div>
+        </div>
+     </div>
+
+     <!-- Attached JavaScript -->
+     <script src="{% static 'product/product_filter.js' %}"></script>
+     {% endblock %}

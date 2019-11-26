@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+
+{% block login-signup %}
+<div class="section account-box">
+        <div class="blue-dark"></div>
+        <div class="light-blue-grad"></div>
+        <div class="container">
+           <div class="row">
+              <div class="col-lg-8 col-lg-offset-2">
+                 <div class="blue-form">
+                    <h2>SignUp</h2>
+                    <form action="{% url 'dashboard' %}" method="POST">
+                       {% csrf_token %}
+                       <input type="hidden" name="form_type" value="signup"/>
+                        <div class="form-inline">
+                            <input name="name" type="text" placeholder="Enter your Name" />
+                        </div><br>
+                        <div class="form-inline">
+                            <input name="phone" type="text" placeholder="Enter your Phone" />
+                        </div><br>
+                        <div class="form-inline">
+                            <input name="email" type="email" placeholder="Enter your E-mail" />
+                        </div><br>
+                        <div class="form-inline">
+                            <input name="password" type="password" placeholder="Enter your Password" />
+                        </div><br>
+                       <button type="submit" class="btn btn-primary">Create an Account</button>
+                    </form>
+                 </div>
+              </div>
+           </div>
+        </div>
+     </div>
+     {% endblock %}
